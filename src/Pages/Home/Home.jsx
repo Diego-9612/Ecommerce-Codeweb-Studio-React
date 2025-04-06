@@ -23,9 +23,6 @@ function Home() {
                 }
             </main>
         </Layout>
-
-
-
     )
 }
 
