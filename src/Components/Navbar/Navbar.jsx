@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../Context/Context";
+import { PiShoppingCartLight } from "react-icons/pi";
 
 
 
@@ -46,8 +47,9 @@ const Navbar = () => {
                 <li>
                     <NavLink to='/sign-in' className={({ isActive }) => isActive ? activeStyle : undefined}>Iniciar Sesion</NavLink>
                 </li>
-                <li>
-                    Carrito {context.counter}
+                <li className="flex items-center justify-between gap-2">
+                <PiShoppingCartLight className="w-6 h-6" />
+                    <span>{context.counter}</span>
                 </li>
             </ul>
         </nav>

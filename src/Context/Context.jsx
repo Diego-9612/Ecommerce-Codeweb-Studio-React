@@ -4,14 +4,27 @@ const ShoppingCartContext = createContext();
 
 const ShoppingCartProvider = ({children}) =>{
 
+    // Shopping Cart Increment Quantity 
     const [counter, setCounter] = useState(0);
-    console.log ('Counter', counter);
+
+    // Product Details Open/Close
+    const [isOpenProductDetails, setIsOpenProductDetails] = useState(false);
+    const openProductDetails = () => setIsOpenProductDetails(true);
+    const closeProductDetails = () => setIsOpenProductDetails(false);
+
+    //Product Details Show Product 
+    const [showToProduct, setShowToProduct] = useState({});
 
     return(
 
         <ShoppingCartContext.Provider value={{
             counter,
-            setCounter
+            setCounter,
+            openProductDetails,
+            closeProductDetails,
+            isOpenProductDetails,
+            showToProduct,
+            setShowToProduct
         }}>
             {children}
         </ShoppingCartContext.Provider>
