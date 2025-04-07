@@ -19,7 +19,7 @@ const OrderCard = props => {
                 <p className="text-sm font-light">{title}</p>
             </section>
             <section className="flex items-center gap-2">
-                <p className="text-lg font-medium">{price}</p>
+                <p className="text-lg font-medium">${price}</p>
                 {renderIoIosClose}
             </section>
         </div>

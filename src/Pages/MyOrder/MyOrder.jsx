@@ -8,6 +8,10 @@ import { TbCircleChevronLeft } from "react-icons/tb";
 function MyOrder() {
 
     const context = useContext(ShoppingCartContext);
+    const currentPath = window.location.pathname;
+    let index = currentPath.substring(currentPath.lastIndexOf('/') + 1);
+    if (index === 'last') index = context.order?.length - 1;
+    console.log(context.order);
 
     return (
         <Layout>
@@ -18,7 +22,7 @@ function MyOrder() {
                 <h2>Mi Orden</h2>
             </div>
             <section className="flex flex-col w-1/4 my-4">
-                {context.order?.slice(-1)[0].products.map(product => (
+                {context.order?.[index]?.products.map(product => (
                     <OrderCard
                         key={product.id}
                         id={product.id}
@@ -27,13 +31,10 @@ function MyOrder() {
                         price={product.price} />
                 ))}
             </section>
-            {context.order.map((order, index) => (
-                <p key={index} className="flex items-center justify-between w-1/4 ">
-                    <span className="font-light">Total</span>
-                    <span className="text-2xl font-medium">${(order.totalPrice)}</span>
-                </p>
-            ))
-            }
+            <p className="flex items-center justify-between w-1/4">
+                <span className="font-light">Total</span>
+                <span className="text-2xl font-medium">${context.order?.[index]?.totalPrice}</span>
+            </p>
 
         </Layout>
     )
