@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../Context/Context";
 import { CiCirclePlus } from "react-icons/ci";
+import { MdOutlineCheck } from "react-icons/md";
 
 const Card = (data) => {
 
@@ -17,9 +18,29 @@ const Card = (data) => {
         context.setCartProduct([...context.cartProduct, data])
         context.openCheckoutSideMenu();
         context.closeProductDetails();
-        console.log('CART', context.cartProduct)
-
     }
+
+    const renderIcon = (id) => {
+
+        const isInCart = context.cartProduct.filter(product => product.id === id).length > 0;
+
+        if (isInCart) {
+            return (
+                <div className="absolute top-0 right-0 flex items-center justify-center m-2 bg-black rounded-full cursor-auto ">
+                    <MdOutlineCheck className="w-4 h-4 m-0.5 text-white"  />
+                </div>
+            );
+        } else {
+
+            return (
+                <div
+                    className="absolute top-0 right-0 flex items-center justify-center m-2"
+                    onClick={(event) => AddProductToCart(event, data.data)}
+                ><CiCirclePlus className="w-6 h-6 text-white rounded-full" />
+                </div>
+            );
+        };
+    };
 
     return (
         <section
@@ -28,10 +49,7 @@ const Card = (data) => {
             <figure className="relative w-full mb-2 h-4/5">
                 <span className="absolute bottom-0 left-0 m-2 text-xs text-black rounded-lg bg-white/60 px-3 py-0.5">{data.data.category.name}</span>
                 <img src={data.data.images[0]} alt={data.data.title} className='object-cover w-full h-full rounded-lg' />
-                <div
-                    className="absolute top-0 right-0 flex items-center justify-center m-2"
-                    onClick={(event) => AddProductToCart(event, data.data)}
-                ><CiCirclePlus className="w-6 h-6 text-white rounded-full" /></div>
+                {renderIcon(data.data.id)}
             </figure>
             <p className='flex items-center justify-between'>
                 <span className='text-sm font-light'>{data.data.title}</span>
