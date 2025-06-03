@@ -98,7 +98,6 @@ Este proyecto está licenciado bajo la Licencia MIT.
 ## 📬 Contacto
 
 Desarrollado por \[Diego Guerrero] - \[[diegoguerrero@umariana.edu.co](mailto:diegoguerrero@umariana.edu.co)]
-Portafolio: [tuportafolio.dev](https://tuportafolio.dev)
 
 ---
 
